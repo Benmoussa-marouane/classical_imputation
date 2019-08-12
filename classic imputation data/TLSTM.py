@@ -161,7 +161,7 @@ class TLSTM(object):
         logits = self.get_outputs()
         cross_entropy= tf.losses.mean_squared_error(labels=self.labels ,predictions=logits )
         #cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.labels, logits=logits))
-        y_pred = tf.argmax(logits, 1)
+        y_pred = tf.nn.softmax(logits, 1)
         y = tf.argmax(self.labels, 1)
         return cross_entropy, y_pred, y, logits, self.labels
 
